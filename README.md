@@ -4,7 +4,7 @@ A kitchen-wall touchscreen for the family: week calendar, per-kid chore charts w
 
 It's a plain web app (vanilla JS, no build step) served by a Cloudflare Worker, shown full-screen by a Raspberry Pi 5 mounted inside a Waveshare 27" touch monitor. Phones and laptops can open the same URL; everyone shares one state.
 
-**Parts list + where to buy:** [`docs/hardware.html`](docs/hardware.html) (~$610 core build).
+**Parts list + where to buy:** https://share.agentic-arrow.com/family-hub-uuywgcq1/ (also [`docs/hardware.html`](docs/hardware.html)) (~$610 core build).
 
 ```
 app/            the hub (index.html, app.js, app.css) + worker.js (API) + wrangler.jsonc
