@@ -1,0 +1,2 @@
+# /etc/cron.d/hub-wifi-watchdog  — install: sudo cp hub-wifi-watchdog.sh /usr/local/bin/ && sudo chmod +x /usr/local/bin/hub-wifi-watchdog.sh && sudo cp hub-wifi-watchdog.cron /etc/cron.d/hub-wifi-watchdog
+*/2 * * * * root /usr/local/bin/hub-wifi-watchdog.sh

@@ -1,0 +1,22 @@
+#cloud-config
+# Optional: Raspberry Pi Imager writes this for you if you use its "OS customisation" screen
+# (hostname, user, WiFi, SSH key). Only use this file if you flash from the command line.
+hostname: familyhub
+manage_etc_hosts: true
+packages:
+- avahi-daemon
+users:
+- name: hub
+  gecos: Family Hub
+  groups: users,adm,dialout,audio,netdev,video,plugdev,input,gpio,spi,i2c,render,sudo
+  shell: /bin/bash
+  lock_passwd: false
+  passwd: "<output of: openssl passwd -6 'your-password'>"
+  sudo: ALL=(ALL) NOPASSWD:ALL
+  ssh_authorized_keys:
+  - "<contents of ~/.ssh/id_ed25519.pub>"
+ssh_pwauth: true
+timezone: America/Chicago
+runcmd:
+- systemctl enable --now ssh
+- raspi-config nonint do_wifi_country US || true

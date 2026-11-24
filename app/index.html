@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Family Hub</title>
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="money-view.css">
+<style>
+/* dev frame: scale the 1080×1920 / 1920×1080 screen to fit the laptop window. Hidden in kiosk mode. */
+body.dev{background:#2a2d33;display:flex;flex-direction:column;align-items:center;min-height:100vh;overflow:auto}
+.devbar{display:flex;gap:10px;align-items:center;padding:10px 14px;color:#cfd3d8;font:14px -apple-system,sans-serif;width:100%;position:sticky;top:0;background:#1f2227;z-index:9}
+.devbar b{margin-right:8px}.devbar button,.devbar a{font:inherit;background:#3a3f47;color:#fff;border:0;border-radius:8px;padding:7px 12px;text-decoration:none;cursor:pointer}
+.devbar button.on{background:#b5651d}.devbar .sp{flex:1}
+#stage{transform-origin:top left;margin:20px 0 40px}
+body.kiosk{background:#000}body.kiosk #screen{width:100vw!important;height:100vh!important}
+</style></head>
+<body>
+<div class="devbar"><b>Family Hub — prototype</b>
+  <button id="bL" class="on">Landscape 1920×1080</button><button id="bP">Portrait 1080×1920</button>
+  <span class="sp"></span>
+  <button id="bFast">Fast idle timers</button><button id="bReset">Reset data</button>
+  <a id="kioskLink" href="?kiosk=1" target="_blank">Open kiosk (native res) ↗</a>
+</div>
+<div id="stage">
+<div id="screen">
+  <div class="artclock"><span class="t"></span><small class="d"></small></div>
+  <header class="top"></header>
+  <main></main>
+  <nav class="tiles"></nav>
+</div>
+</div>
+<script src="data.js"></script>
+<script src="money-history.js"></script>
+<script src="money-view.js"></script>
+<script src="app.js"></script>
+<script>
+(() => {
+  const q=new URLSearchParams(location.search), kiosk=q.get("kiosk")==="1";
+  const screen=document.getElementById("screen"), stage=document.getElementById("stage");
+  const setOrient=o=>{ screen.classList.toggle("landscape",o==="landscape"); document.getElementById("bP").classList.toggle("on",o!=="landscape"); document.getElementById("bL").classList.toggle("on",o==="landscape"); fit(); try{localStorage.setItem("hub.orient",o)}catch(e){} };
+  function fit(){ if(kiosk) return; const w=screen.classList.contains("landscape")?1920:1080, h=screen.classList.contains("landscape")?1080:1920; const s=Math.min((innerWidth-40)/w,(innerHeight-80)/h,1); stage.style.transform=`scale(${s})`; stage.style.width=w*s+"px"; stage.style.height=h*s+"px"; }
+  if (kiosk){ document.body.classList.add("kiosk"); document.querySelector(".devbar").remove(); stage.style.margin=0; const o=()=>screen.classList.toggle("landscape",innerWidth>innerHeight); o(); addEventListener("resize",o); }
+  else { document.body.classList.add("dev"); let o="landscape"; try{o=localStorage.getItem("hub.orient")||(q.get("orient")||"landscape")}catch(e){} if(q.get("orient")) o=q.get("orient"); setOrient(o); addEventListener("resize",fit);
+    document.getElementById("bP").onclick=()=>setOrient("portrait"); document.getElementById("bL").onclick=()=>setOrient("landscape");
+    document.getElementById("bReset").onclick=()=>{HUB.resetState();HUB.render();};
+    const fast=q.get("fast")==="1"; const bf=document.getElementById("bFast"); bf.classList.toggle("on",fast); bf.onclick=()=>{ q.set("fast",fast?"0":"1"); location.search=q.toString(); };
+    document.getElementById("kioskLink").href="?kiosk=1"+(q.get("date")?"&date="+q.get("date"):""); }
+})();
+</script>
+</body></html>

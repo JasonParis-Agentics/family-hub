@@ -1,0 +1,9 @@
+// Copy-paste ready. Create the two stores first:
+//   npx wrangler kv namespace create HUB_STATE      -> paste the id below
+//   npx wrangler r2 bucket create family-hub-photos
+{ "name": "family-hub", "compatibility_date": "2026-10-01", "main": "worker.js",
+  "assets": { "directory": ".", "binding": "ASSETS", "run_worker_first": ["/api/*"] },
+  "vars": { "TZ": "America/Chicago", "KIDS": "ava,ben,cleo",
+            "WEATHER_LAT": "39.8283", "WEATHER_LON": "-98.5795", "WEATHER_PLACE": "Your Town, ST" },
+  "r2_buckets": [{ "binding": "PHOTOS", "bucket_name": "family-hub-photos" }],
+  "kv_namespaces": [{ "binding": "HUB_STATE", "id": "PASTE_YOUR_KV_NAMESPACE_ID" }] }

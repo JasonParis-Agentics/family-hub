@@ -1,0 +1,169 @@
+<title>Family Hub Parts List</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column; a parts table is the spine, wiring + steps follow. Kitchen-wall palette: warm board, chore-chart orange. */
+:root{
+  --bg:#f6f4f0; --panel:#fffdfa; --fg:#23211d; --muted:#6b665d; --line:#e2ddd3;
+  --accent:#b5651d; --accent-soft:#f6e7d7; --ok:#2f7d4f;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Public Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#181714;--panel:#211f1b;--fg:#ece8e1;--muted:#a39d92;--line:#36332d;--accent:#e08a3c;--accent-soft:#3a2a1b;--ok:#6cc08f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#181714;--panel:#211f1b;--fg:#ece8e1;--muted:#a39d92;--line:#36332d;--accent:#e08a3c;--accent-soft:#3a2a1b;--ok:#6cc08f;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 64px}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:44px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:1.5rem;font-weight:700;margin-bottom:14px}
+h3{font-size:1.05rem;font-weight:600}
+p{margin:0;max-width:68ch}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.eyebrow{font:500 .75rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.lede{font-size:1.1rem;color:var(--muted);margin-top:12px}
+.totals{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;display:flex;flex-direction:column;min-width:0}
+.chip b{font:600 1.25rem var(--display);font-variant-numeric:tabular-nums}
+.chip span{font-size:.8rem;color:var(--muted)}
+.chip.hi{background:var(--accent-soft);border-color:transparent}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.95rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 .72rem var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.price{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+td .note{display:block;color:var(--muted);font-size:.85rem;margin-top:3px}
+.tag{display:inline-block;font:500 .68rem var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-left:6px;vertical-align:2px}
+.tag.opt{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.buy{display:flex;flex-direction:column;gap:4px}
+.buy a{white-space:nowrap}
+.callout{border-left:3px solid var(--accent);background:var(--panel);padding:14px 18px;border-radius:0 10px 10px 0;display:flex;flex-direction:column;gap:6px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.card p{color:var(--muted);font-size:.93rem}
+ol.steps{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:10px;max-width:72ch}
+code{font:500 .85em var(--mono);background:var(--accent-soft);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+.diagram{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px}
+.diagram svg{display:block;min-width:620px;width:100%;height:auto}
+.diagram text{font-family:var(--body);fill:var(--fg)}
+.diagram .sm{font-size:12px;fill:var(--muted)}
+footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padding-top:18px}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Family Hub · build kit</div>
+  <h1>What to buy for the kitchen wall</h1>
+  <p class="lede">A 27-inch touchscreen with a Raspberry Pi hidden in its back. It runs the family calendar, chore charts, reward shop, meals, memory verse and photos. No subscription. The software is in the repo; this page is the shopping list.</p>
+  <div class="totals">
+    <div class="chip hi"><b>≈ $610</b><span>core build, before shipping</span></div>
+    <div class="chip"><b>≈ $830</b><span>with the swing arm instead of the fixed mount</span></div>
+    <div class="chip"><b>~$0/mo</b><span>Cloudflare free tier hosts it</span></div>
+    <div class="chip"><b>~1 evening</b><span>assembly + setup</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>The parts</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Part</th><th>Why this one</th><th>Paid (Oct 2026)</th><th>Where to buy</th></tr></thead>
+    <tbody>
+    <tr>
+      <td><b>Waveshare 27" FHD capacitive touch monitor</b><span class="tag">core</span><span class="note">SKU 33975 · US plug · 1920×1080 · 10-point touch · 10.8 lb</span></td>
+      <td>Has a built-in compartment on the back that the Pi mounts into, plus speakers. One 12 V brick powers the screen and the Pi. Touch is plain USB, no drivers.</td>
+      <td class="price">$429.99<span class="note">+ ~$139 express ship</span></td>
+      <td class="buy"><a href="https://www.waveshare.com/27inch-fhd-monitor.htm" target="_blank" rel="noopener">Waveshare store ↗</a><a href="https://docs.waveshare.com/27inch_FHD_Monitor" target="_blank" rel="noopener">Wiring docs ↗</a></td>
+    </tr>
+    <tr>
+      <td><b>Raspberry Pi 5, 4 GB</b><span class="tag">core</span><span class="note">board only, no kit needed</span></td>
+      <td>Plenty for a full-screen Chromium kiosk. 4 GB is the sweet spot; 8 GB is wasted here.</td>
+      <td class="price">$126.49<span class="note">Amazon; often less elsewhere</span></td>
+      <td class="buy"><a href="https://www.amazon.com/dp/B0CK3L9WD3" target="_blank" rel="noopener">Amazon ↗</a><a href="https://www.pishop.us/" target="_blank" rel="noopener">PiShop.us ↗</a><a href="https://www.canakit.com/" target="_blank" rel="noopener">CanaKit ↗</a></td>
+    </tr>
+    <tr>
+      <td><b>Official Raspberry Pi 5 Active Cooler</b><span class="tag">core</span></td>
+      <td>The Pi lives in a closed compartment all day. Without the fan it throttles.</td>
+      <td class="price">$10.95</td>
+      <td class="buy"><a href="https://www.amazon.com/dp/B0CZLPX2HC" target="_blank" rel="noopener">Amazon ↗</a></td>
+    </tr>
+    <tr>
+      <td><b>SanDisk Ultra 32 GB microSD (A1)</b><span class="tag">core</span><span class="note">SDSQUA4-032G-GN6MA</span></td>
+      <td>The Pi's boot drive. A1-rated cards are fast enough for the OS; 32 GB is more than enough.</td>
+      <td class="price">$25.21</td>
+      <td class="buy"><a href="https://www.amazon.com/dp/B08GY9NYRM" target="_blank" rel="noopener">Amazon ↗</a></td>
+    </tr>
+    <tr>
+      <td><b>Mount-It! low-profile fixed VESA mount</b><span class="tag">pick one mount</span><span class="note">VESA 75/100 · 0.55" off the wall · 60 lb</span></td>
+      <td>Cheapest clean option. Sits nearly flush. Screw into a stud, or two toggle bolts if there's no stud.</td>
+      <td class="price">$16.99</td>
+      <td class="buy"><a href="https://www.amazon.com/dp/B004DEJAZU" target="_blank" rel="noopener">Amazon ↗</a></td>
+    </tr>
+    <tr>
+      <td><b>Ergotron LX Pro wall arm</b><span class="tag opt">upgrade mount</span><span class="note">model 45-683-293 · VESA 75/100 · 4–22 lb · 25.7" reach</span></td>
+      <td>What Jason ended up using. Pulls the screen out and down so little kids can reach it, then pushes back flat. Mount it right-side up; the gas spring can't be flipped.</td>
+      <td class="price">~$229–236</td>
+      <td class="buy"><a href="https://www.amazon.com/dp/B0DSJLHHTB" target="_blank" rel="noopener">Amazon ↗</a></td>
+    </tr>
+    </tbody>
+  </table></div>
+  <div class="callout" style="margin-top:16px">
+    <h3>Already in the Waveshare box</h3>
+    <p>The 12 V power brick, the two small adapter boards that bridge the monitor to the Pi (one for HDMI, one for Pi power), a short USB-A to USB-C cable for touch, and the screws. You do not need a separate Pi power supply, HDMI cable or case.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Things you probably have</h2>
+  <div class="grid2">
+    <div class="card"><h3>A computer with an SD slot</h3><p>Or any USB microSD reader (~$10). Used once, to flash the card with Raspberry Pi Imager.</p></div>
+    <div class="card"><h3>An outlet near the spot</h3><p>One plug for the whole thing. Plan a cord path; the brick is small enough to hide behind the screen or arm.</p></div>
+    <div class="card"><h3>Home WiFi</h3><p>The Pi joins on first boot. The hub keeps working offline from its last saved copy if the WiFi drops.</p></div>
+    <div class="card"><h3>A small Phillips screwdriver</h3><p>For the cooler, the Pi standoffs and the back cover.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>How it connects</h2>
+  <div class="diagram" role="img" aria-label="Wall outlet to 12 volt brick to monitor driver board. The driver board feeds the Pi through the HDMI and Pi-power adapter boards. Touch goes from the monitor to the Pi over a short USB cable. The Pi reaches the hub website over WiFi.">
+  <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg">
+    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--accent)"/></marker></defs>
+    <rect x="10" y="80" width="110" height="60" rx="10" fill="var(--bg)" stroke="var(--line)"/>
+    <text x="65" y="106" text-anchor="middle" font-weight="600">Outlet</text><text x="65" y="124" text-anchor="middle" class="sm">→ 12 V brick</text>
+    <rect x="170" y="30" width="330" height="170" rx="14" fill="var(--bg)" stroke="var(--line)"/>
+    <text x="185" y="54" font-weight="600">Waveshare 27" (back)</text>
+    <rect x="190" y="75" width="120" height="100" rx="8" fill="var(--panel)" stroke="var(--line)"/>
+    <text x="250" y="118" text-anchor="middle" font-weight="600">Driver board</text><text x="250" y="136" text-anchor="middle" class="sm">screen + speakers</text>
+    <rect x="360" y="75" width="120" height="100" rx="8" fill="var(--accent-soft)" stroke="var(--accent)"/>
+    <text x="420" y="112" text-anchor="middle" font-weight="600">Pi 5 + fan</text><text x="420" y="130" text-anchor="middle" class="sm">in the rear</text><text x="420" y="146" text-anchor="middle" class="sm">compartment</text>
+    <line x1="120" y1="110" x2="188" y2="110" stroke="var(--accent)" stroke-width="2" marker-end="url(#ar)"/>
+    <line x1="310" y1="95" x2="358" y2="95" stroke="var(--accent)" stroke-width="2" marker-end="url(#ar)"/>
+    <text x="334" y="88" text-anchor="middle" class="sm">power</text>
+    <line x1="358" y1="125" x2="312" y2="125" stroke="var(--accent)" stroke-width="2" marker-end="url(#ar)"/>
+    <text x="334" y="118" text-anchor="middle" class="sm">HDMI</text>
+    <line x1="312" y1="155" x2="358" y2="155" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+    <text x="334" y="172" text-anchor="middle" class="sm">touch USB</text>
+    <rect x="560" y="80" width="150" height="60" rx="10" fill="var(--bg)" stroke="var(--line)"/>
+    <text x="635" y="106" text-anchor="middle" font-weight="600">Hub website</text><text x="635" y="124" text-anchor="middle" class="sm">Cloudflare Worker</text>
+    <line x1="480" y1="110" x2="558" y2="110" stroke="var(--accent)" stroke-width="2" stroke-dasharray="2 5" marker-end="url(#ar)"/>
+    <text x="519" y="102" text-anchor="middle" class="sm">WiFi</text>
+  </svg>
+  </div>
+</section>
+
+<section>
+  <h2>Build order</h2>
+  <ol class="steps">
+    <li><b>Flash the card.</b> Raspberry Pi Imager → Raspberry Pi OS (64-bit, desktop). In its settings set hostname <code>familyhub</code>, a user, your WiFi, and paste your SSH key.</li>
+    <li><b>Prep the Pi.</b> Card in, cooler on (the two push-pins sit diagonally), fan cable into the FAN header.</li>
+    <li><b>Mount it in the monitor.</b> Pi onto the compartment standoffs, both adapter boards plugged in, short USB cable to the port marked TOUCH, 12 V brick into the monitor.</li>
+    <li><b>Deploy the hub.</b> Edit <code>app/data.js</code> with your kids, chores and rewards, then <code>npx wrangler deploy</code>. The README walks through it.</li>
+    <li><b>Turn it into a kiosk.</b> One command over SSH runs <code>pi/setup_kiosk.sh</code>: auto-login, full-screen browser, no screen blanking, nightly 4 a.m. refresh.</li>
+    <li><b>Hang it.</b> Landscape. Put the screen's center around 47–50" off the floor so the youngest kid can reach the bottom row.</li>
+  </ol>
+</section>
+
+<footer>Prices are what we paid in October 2026 and will drift. Amazon listings change; if a link dies, search the model number. Everything else is in the repo's README.</footer>
+</div>
